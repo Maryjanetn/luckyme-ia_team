@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrummerGorg</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js"></script>
+</head>
+<body>
+    <header>
+        <h1>DrummerGorg</h1>
+        <nav>
+            <a href="#"><img src="fb.png" alt="Facebook"></a>
+            <a href="#"><img src="twitter.png" alt="Twitter"></a>
+            <a href="#" onclick="openContact()">Contact Us</a>
+        </nav>
+    </header>
+
+    <div id="media-container"></div>
+
+    <div id="contact-popup">
+        <div class="popup-content">
+            <span onclick="closeContact()" class="close">&times;</span>
+            <h2>Contact Us</h2>
+            <p>Email: admin@drummergorg.com</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

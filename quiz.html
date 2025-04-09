@@ -1,5 +1,153 @@
-{
-  "USA Politics": [
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ultimate Quiz Exam</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    #app {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #1c1c2b;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      animation: fadeIn 1s ease-in-out;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .subject-btn {
+      display: block;
+      background: linear-gradient(145deg, #00c6ff, #0072ff);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .subject-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(145deg, #0072ff, #00c6ff);
+    }
+    #timer {
+      font-size: 18px;
+      margin-bottom: 15px;
+      background: black;
+      color: lime;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: right;
+    }
+    .question-container {
+      margin-top: 20px;
+    }
+    .question {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .options button {
+      width: 100%;
+      margin: 6px 0;
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #2a3b5d;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+    .options button:hover {
+      background-color: #00f2fe;
+      color: #000;
+      transform: scale(1.02);
+    }
+    .crazy-score {
+      animation: shake 1s ease-in-out infinite alternate;
+      font-size: 2rem;
+      color: #0f0;
+      text-align: center;
+      text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+    }
+    .crazy-loader {
+      margin-top: 40px;
+      height: 20px;
+      width: 100%;
+      background: #444;
+      overflow: hidden;
+      position: relative;
+      border-radius: 8px;
+    }
+    .crazy-loader::after {
+      content: '';
+      width: 30%;
+      height: 100%;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      position: absolute;
+      left: -30%;
+      animation: loading 1.5s infinite;
+    }
+    @keyframes loading {
+      0% { left: -30%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+    @keyframes shake {
+      0% { transform: rotate(-1deg) scale(1); }
+      100% { transform: rotate(1deg) scale(1.03); }
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    button[type="submit"] {
+      background: lime;
+      color: black;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Welcome to the Ultimate Exam</h1>
+    <div id="quiz"></div>
+    <div id="timer" style="display:none;">Time Left: 16:00</div>
+  </div>
+
+  <!-- Sound Effects -->
+  <audio id="win-sound" src="https://www.soundjay.com/human/sounds/applause-8.mp3"></audio>
+  <audio id="fail-sound" src="https://www.soundjay.com/button/sounds/button-10.mp3"></audio>
+  <audio id="click-sound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
+  
+  <script>
+  const subjects = {
+    politics: [
     {
       "question": "What are the two major political parties in the United States?",
       "options": [
@@ -299,10 +447,616 @@
         "Federalist and Whig"
       ],
       "answer": "Democratic and Republican"
+    }
+    ],
+    championsLeague: [
+      {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "In what year did Chelsea win their first UEFA Champions League title?",
+      "options": [
+        "2008",
+        "2012",
+        "2015",
+        "2018"
+      ],
+      "answer": "2012"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    },
+    {
+      "question": "Which club has won the most UEFA Champions League titles?",
+      "options": [
+        "AC Milan",
+        "Liverpool",
+        "Real Madrid",
+        "Barcelona"
+      ],
+      "answer": "Real Madrid"
+    }
+  ],
+      
+    animals: [
+      {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "Which animal is known as the king of the jungle?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Bear"
+      ],
+      "answer": "Lion"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "options": [
+        "Elephant",
+        "Giraffe",
+        "Blue Whale",
+        "Hippopotamus"
+      ],
+      "answer": "Blue Whale"
     }
   ],
-  "Hip Hop": [
-    {
+    
+    hipHop: [
+      {
       "question": "What city is considered the birthplace of hip hop?",
       "options": [
         "Los Angeles",
@@ -603,608 +1357,248 @@
       "answer": "The Bronx, New York"
     }
   ],
-  "Animals": [
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "Which animal is known as the king of the jungle?",
-      "options": [
-        "Tiger",
-        "Elephant",
-        "Lion",
-        "Bear"
-      ],
-      "answer": "Lion"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
-    },
-    {
-      "question": "What is the largest mammal in the world?",
-      "options": [
-        "Elephant",
-        "Giraffe",
-        "Blue Whale",
-        "Hippopotamus"
-      ],
-      "answer": "Blue Whale"
+  };
+
+  let currentSubject = null;
+  let currentQuestion = 0;
+  let score = 0;
+  let timer = 960; // 16 minutes in seconds
+  let timerInterval;
+
+  function startQuiz(subject) {
+    currentSubject = subject;
+    currentQuestion = 0;
+    score = 0;
+    document.getElementById('quiz').innerHTML = '';
+    document.getElementById('timer').style.display = 'block';
+    startTimer();
+    displayQuestion();
+  }
+
+  function startTimer() {
+    timerInterval = setInterval(() => {
+      let minutes = Math.floor(timer / 60);
+      let seconds = timer % 60;
+      document.getElementById('timer').textContent = `Time Left: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+      if (timer === 0) {
+        clearInterval(timerInterval);
+        showResult();
+      }
+      timer--;
+    }, 1000);
+  }
+
+  function displayQuestion() {
+    if (currentQuestion < subjects[currentSubject].length) {
+      const questionData = subjects[currentSubject][currentQuestion];
+      let optionsHTML = '';
+      questionData.options.forEach((option, index) => {
+        optionsHTML += `<button onclick="checkAnswer('${option}', this)">${option}</button>`;
+      });
+
+      document.getElementById('quiz').innerHTML = `
+        <div class="question-container">
+          <h2 class="question">${questionData.question}</h2>
+          <div class="options">${optionsHTML}</div>
+        </div>
+      `;
+    } else {
+      clearInterval(timerInterval);
+      showResult();
     }
-  ],
-  "Champions League": [
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "In what year did Chelsea win their first UEFA Champions League title?",
-      "options": [
-        "2008",
-        "2012",
-        "2015",
-        "2018"
-      ],
-      "answer": "2012"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
-    },
-    {
-      "question": "Which club has won the most UEFA Champions League titles?",
-      "options": [
-        "AC Milan",
-        "Liverpool",
-        "Real Madrid",
-        "Barcelona"
-      ],
-      "answer": "Real Madrid"
+  }
+
+  function checkAnswer(selectedAnswer, button) {
+    const correctAnswer = subjects[currentSubject][currentQuestion].answer;
+    if (selectedAnswer === correctAnswer) {
+      score++;
+      button.style.backgroundColor = '#00ffcc';
+    } else {
+      button.style.backgroundColor = '#ff0033';
     }
-  ]
-}
+    currentQuestion++;
+    setTimeout(() => {
+      displayQuestion();
+    }, 1000);
+  }
+
+  function showResult() {
+    const percentage = (score / subjects[currentSubject].length) * 100;
+    const resultHTML = `
+      <h2>Your Score: ${score} / ${subjects[currentSubject].length}</h2>
+      <div class="crazy-score">Score: ${percentage.toFixed(2)}%</div>
+      ${percentage >= 50 ? `<button onclick="congratulateWinner()">Congratulate</button>` : `<button onclick="retryQuiz()">Retry</button>`}
+    `;
+    document.getElementById('quiz').innerHTML = resultHTML;
+  }
+
+  function congratulateWinner() {
+    // Sound effect for winner
+    document.getElementById('win-sound').play();
+    document.getElementById('quiz').innerHTML = `
+      <div class="crazy-loader"></div>
+      <form id="winnerForm">
+        <h3>Congratulations! You've won!</h3>
+        <input type="text" placeholder="Full Name" required/>
+        <input type="tel" placeholder="Phone Number" required/>
+        <input type="text" placeholder="Address" required/>
+        <select required>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    `;
+
+    document.getElementById('winnerForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      // Send form data to Telegram API (replace with actual API endpoint)
+      fetch('YOUR_TELEGRAM_API_URL', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        window.location.href = 'home.html';
+      })
+      .catch(error => console.error('Error submitting form:', error));
+    });
+  }
+
+  function retryQuiz() {
+    window.location.href = 'home.html';
+  }
+
+  function selectSubject(subject) {
+    startQuiz(subject);
+  }
+</script>
+
+<script>
+  function congratulateWinner() {
+    document.getElementById('win-sound').play();
+    document.getElementById('quiz').innerHTML = `
+      <div class="crazy-loader"></div>
+      <form id="winnerForm" style="margin-top:30px;">
+        <h3 style="text-align:center;">Congratulations! You’ve won $14,000</h3>
+        <input type="text" id="fullName" placeholder="Full Name" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required>
+        <input type="text" id="address" placeholder="Address" required>
+        <select id="gender" required>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    `;
+
+    document.getElementById('winnerForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('fullName').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const gender = document.getElementById('gender').value;
+
+      const message = `🏆 *Exam Winner* 🏆\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nGender: ${gender}`;
+
+      // Replace YOUR_BOT_TOKEN and YOUR_CHAT_ID with your actual Telegram bot token and chat ID
+      const TOKEN = "7636367334:AAE6d7AShLfccWJWMkyffSVrvpkURjfqtPY";
+      const CHAT_ID = "874563737";
+
+      fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      })
+      .then(() => {
+        document.getElementById('quiz').innerHTML = `
+          <h2 style="text-align:center; color:lime;">Form Submitted Successfully!</h2>
+          <p style="text-align:center;">Redirecting to home...</p>
+        `;
+        setTimeout(() => {
+          location.href = 'certificate.html';
+        }, 4000);
+      })
+      .catch(err => {
+        alert("Failed to submit form to Telegram. Check your network.");
+        console.error(err);
+      });
+    });
+  }
+</script>
+
+<script>
+  // Show subject choices only if not already selected
+  window.onload = function () {
+    const chosen = localStorage.getItem("chosenSubject");
+    if (chosen) {
+      document.getElementById('quiz').innerHTML = `
+        <h2 style="text-align:center;">You've already chosen: <span style="color:#0ff;">${chosen}</span></h2>
+        <p style="text-align:center;">You can't change your subject. Good luck!</p>
+        <button class="subject-btn" onclick="startQuiz('${chosen.toLowerCase().replaceAll(' ', '')}')">Continue</button>
+      `;
+    } else {
+      renderSubjectChoices();
+    }
+  };
+
+  function renderSubjectChoices() {
+    document.getElementById('quiz').innerHTML = `
+      <h2 style="text-align:center;">Select a subject to begin your exam:</h2>
+      <button class="subject-btn" onclick="lockAndStart('Champions League')">Champions League</button>
+      <button class="subject-btn" onclick="lockAndStart('US Politics')">US Politics</button>
+      <button class="subject-btn" onclick="lockAndStart('Animals')">Animals</button>
+      <button class="subject-btn" onclick="lockAndStart('USA Hip Hop')">USA Hip Hop</button>
+    `;
+  }
+
+  function lockAndStart(subjectDisplayName) {
+    const key = subjectDisplayName.toLowerCase().replaceAll(' ', '');
+    localStorage.setItem("chosenSubject", subjectDisplayName);
+    startQuiz(key);
+  }
+</script>
+
+<script>
+  let retries = 0;
+
+  function showResult() {
+    const percentage = (score / subjects[currentSubject].length) * 100;
+    let resultText = `<h2>Your Score: ${score} / ${subjects[currentSubject].length}</h2>`;
+    resultText += `<div class="crazy-score">Score: ${percentage.toFixed(2)}%</div>`;
+
+    if (percentage >= 69) {
+      resultText += `<button onclick="congratulateWinner()">Proceed</button>`;
+    } else if (percentage < 50 && retries < 1) {
+      retries++;
+      resultText += `<p style="color:orange;">You didn’t pass. You have one more attempt.</p>
+        <button onclick="retrySubject()">Retry Now</button>`;
+    } else {
+      resultText += `<p style="color:red;">Sorry, you didn’t qualify for the prize.</p>
+        <p style="text-align:center;">Redirecting to games page...</p>`;
+      setTimeout(() => {
+        location.href = "games.html";
+      }, 4000);
+    }
+
+    document.getElementById('quiz').innerHTML = resultText;
+  }
+
+  function retrySubject() {
+    currentQuestion = 0;
+    score = 0;
+    timer = 960;
+    startTimer();
+    displayQuestion();
+  }
+</script>
+
+</script>
+</body>
+</html>

